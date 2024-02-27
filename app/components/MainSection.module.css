@@ -1,0 +1,25 @@
+.galleryContainer{
+    position: absolute;
+    display: flex;
+    width: 60%;
+    flex-wrap: wrap;
+    gap: 10px;
+    left: 20%;
+    justify-content: space-around;
+    transition: transform 1s ease-in-out 0s;
+    transform: translate3d(0,0,0);
+
+   
+    @apply bg-gray-600 p-8 rounded-3xl
+}
+
+.galleryContainer:hover{
+    transform: translate3d(0,-200px,0);
+}
+
+.galleryContainer > div{
+    width: 140px;
+    height:200px ;
+
+    @apply bg-slate-900 rounded-xl
+}

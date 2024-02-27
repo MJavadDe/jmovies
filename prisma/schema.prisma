@@ -1,0 +1,93 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          Int          @id @default(autoincrement())
+  email       String       @unique
+  name        String?
+  password    String?
+  ratings     Rating[]
+  favorites   Favorite[]
+  watchLaters WatchLater[]
+}
+
+model Movie {
+  id          Int          @id @default(autoincrement())
+  title       String       @unique
+  year        DateTime
+  director    String
+  description String
+  addingTime DateTime @default(now())
+  ratings     Rating[]
+  favorites   Favorite[]
+  watchLaters WatchLater[]
+  actors      Actor[]
+  genres      Genre[]
+}
+
+model Series {
+  id          Int          @id @default(autoincrement())
+  title       String       @unique
+  year        DateTime
+  director    String
+  description String
+  addingTime DateTime @default(now())
+  seasons     Int
+  genres      Genre[]
+  favorites   Favorite[]
+  watchLaters WatchLater[]
+}
+
+model Actor {
+  id     Int     @id @default(autoincrement())
+  name   String
+  movies Movie[]
+}
+
+model Genre {
+  id     Int      @id @default(autoincrement())
+  name   String   @unique
+  movies Movie[]
+  series Series[]
+}
+
+model Rating {
+  id      Int     @id @default(autoincrement())
+  rating  Decimal
+  movie   Movie   @relation(fields: [movieId], references: [id])
+  movieId Int
+  user    User    @relation(fields: [userId], references: [id])
+  userId  Int
+}
+
+model Favorite {
+  id       Int     @id @default(autoincrement())
+  movie    Movie?  @relation(fields: [movieId], references: [id])
+  movieId  Int?
+  series   Series? @relation(fields: [seriesId], references: [id])
+  seriesId Int?
+  user     User    @relation(fields: [userId], references: [id])
+  userId   Int
+}
+
+model WatchLater {
+  id       Int     @id @default(autoincrement())
+  movie    Movie?  @relation(fields: [movieId], references: [id])
+  movieId  Int?
+  series   Series? @relation(fields: [seriesId], references: [id])
+  seriesId Int?
+  user     User    @relation(fields: [userId], references: [id])
+  userId   Int
+}

@@ -13,8 +13,13 @@ const config: Config = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      fontFamily: {
+        "lexend": '"Lexend", sans-serif',
+        "manrope":'"Manrope", sans-serif'
+      }
+
     },
   },
-  plugins: [],
+  plugins: [require("daisyui")],
 };
 export default config;
