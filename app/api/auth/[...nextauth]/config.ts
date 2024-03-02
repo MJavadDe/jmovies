@@ -7,6 +7,9 @@ import GoogleProvider from "next-auth/providers/google";
 
 export const nextAuthConfig: NextAuthOptions = {
     adapter: PrismaAdapter(prisma),
+    pages: {
+        signIn: "/auth"
+    },
     providers: [
         CredentialsProvider({
             name: "Information",
@@ -22,7 +25,7 @@ export const nextAuthConfig: NextAuthOptions = {
                 
                 if (!user) return null;
 
-                const passwordsMatch = await bcrypt.compare(credentials.password, user.password)
+                const passwordsMatch = bcrypt.compare(credentials.password, user.password)
 
                 return passwordsMatch ? user : null;
 

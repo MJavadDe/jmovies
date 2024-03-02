@@ -12,7 +12,7 @@ function Navbar() {
           <li>
             <ul className='flex items-center gap-5'>
               <li>
-                <Link className='text-white' href={"/api/auth/signing"}>Sign in</Link>
+                <Link className='text-white' href={"/api/auth/signin"}>Sign in</Link>
               </li>
               <li>
                 <Link href={"/api/auth/signup"} className='btn bg-white text-black hover:text-gray-400 rounded-3xl'>Join JMovies</Link>

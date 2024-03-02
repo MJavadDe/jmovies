@@ -16,7 +16,10 @@ datasource db {
 model User {
   id          Int          @id @default(autoincrement())
   email       String       @unique
-  name        String?
+  firstName String?
+  lastName String?
+  signUpDate DateTime @default(now())
+  username    String? 
   password    String?
   ratings     Rating[]
   favorites   Favorite[]
