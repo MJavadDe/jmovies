@@ -1,8 +1,12 @@
 import type { Metadata } from "next";
 import { Epilogue, Inter, Manrope } from "next/font/google";
 import "./globals.css";
+import {NextFont} from "next/dist/compiled/@next/font";
+import { ToastContainer } from "react-toastify";
 
-export const inter = Inter({ subsets: ["latin"] });
+import 'react-toastify/dist/ReactToastify.css';
+
+export const inter:NextFont = Inter({ subsets: ["latin"] });
 
 export const epilogue = Epilogue({
   weight: ["400", "300"],
@@ -27,7 +31,21 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        {children}
+        <ToastContainer
+          position="bottom-left"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="dark"
+        />
+      </body>
     </html>
   );
 }

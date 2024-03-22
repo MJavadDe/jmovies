@@ -2,7 +2,7 @@ function Notification({ entry }:{entry:{}}) {
     return (
         <article role="alert"
             onClick={(event) => event.target.remove()}
-            className={`${entry! ? "" : "hidden"} z-[100] cursor-pointer absolute left-0 top-0 alert alert-error`}>
+            className={`${entry! ? "" : "hidden"} z-[100] cursor-pointer absolute left-0 top-0 alert`}>
             <svg
           xmlns="http://www.w3.org/2000/svg"
           className="stroke-current shrink-0 h-6 w-6"
